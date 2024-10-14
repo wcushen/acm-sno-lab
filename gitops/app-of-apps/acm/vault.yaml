@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/eformat/acm-sno-lab.git
-    path: applications/vault
+    path: gitops/applications/vault
     plugin:
       name: argocd-novault-plugin-kustomize
     targetRevision: main
