@@ -19,4 +19,4 @@ spec:
        fstype: xfs
        deviceSelector:
          paths:
-         - /dev/disk/by-path/pci-0000:23:00.0-nvme-1
+         - /dev/disk/by-path/virtio-pci-0000:08:00.0
