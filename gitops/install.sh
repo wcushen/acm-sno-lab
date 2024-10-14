@@ -90,7 +90,6 @@ storage_class() {
         oc get sc/lvms-vgsno
     done
     oc annotate sc/lvms-vgsno storageclass.kubernetes.io/is-default-class=true
-    oc annotate sc/gp3-csi storageclass.kubernetes.io/is-default-class-
     if [ "$?" != 0 ]; then
         echo -e "🕱${RED}Failed to annotate sc ?${NC}"
         exit 1
