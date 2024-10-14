@@ -1,4 +1,77 @@
 ---
+apiVersion: operator.open-cluster-management.io/v1
+kind: MultiClusterHub
+metadata:
+  name: multiclusterhub
+  namespace: open-cluster-management
+spec:
+  availabilityConfig: Basic
+---
+apiVersion: apps.open-cluster-management.io/v1beta1
+kind: GitOpsCluster
+metadata:
+  name: global-policy
+  namespace: openshift-gitops
+spec:
+  argoServer:
+    cluster: local-cluster
+    argoNamespace: openshift-gitops
+  placementRef:
+    kind: Placement
+    apiVersion: cluster.open-cluster-management.io/v1beta1
+    name: placement-hub-openshift
+    namespace: openshift-gitops
+---
+apiVersion: cluster.open-cluster-management.io/v1beta2
+kind: ManagedClusterSet
+metadata:
+  name: develop
+  namespace: openshift-gitops
+spec:
+  clusterSelector:
+    selectorType: ExclusiveClusterSetLabel
+---
+apiVersion: cluster.open-cluster-management.io/v1beta2
+kind: ManagedClusterSetBinding
+metadata:
+  namespace: openshift-gitops
+  name: develop
+spec:
+  clusterSet: develop
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  labels:
+    custom: gitops-operator-policy
+  name: placement-hub-openshift
+  namespace: openshift-gitops
+spec:
+  clusterSets:
+    - develop
+  predicates:
+    - requiredClusterSelector:
+        labelSelector:
+          matchExpressions:
+            - {key: local-cluster, operator: In, values: ["true"]}
+---
+apiVersion: cluster.open-cluster-management.io/v1beta1
+kind: Placement
+metadata:
+  labels:
+    custom: gitops-operator-policy
+  name: placement-spokes-openshift
+  namespace: openshift-gitops
+spec:
+  clusterSets:
+    - develop
+  predicates:
+    - requiredClusterSelector:
+        labelSelector:
+          matchExpressions:
+            - {key: vendor, operator: In, values: ["OpenShift"]}
+            - {key: name, operator: NotIn, values: ["local-cluster"]}
+---
 apiVersion: user.openshift.io/v1
 kind: Group
 metadata:
