@@ -11,6 +11,6 @@ helmCharts:
       vault:
         server:
           route:
-            host: vault.apps.sno-in-sno.lab.apac-telco.net
+            host: vault.apps.acm.sno.redhatlabs.dev
           extraEnvironmentVars:
-            VAULT_TLS_SERVER_NAME: vault.apps.sno-in-sno.lab.apac-telco.net
+            VAULT_TLS_SERVER_NAME: vault.apps.apps.acm.sno.redhatlabs.dev
