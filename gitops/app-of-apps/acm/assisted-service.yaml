@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: vault
+  name: assisted-service
   namespace: openshift-gitops
 spec:
   goTemplate: true
@@ -17,23 +17,21 @@ spec:
     preserveResourcesOnDeletion: false
   template:
     metadata:
-      name: vault-{{.name}}
+      name: assisted-service-{{.name}}
       annotations:
         argocd.argoproj.io/compare-options: IgnoreExtraneous
     spec:
       project: default
       destination:
         server: "{{.server}}"
-        namespace: vault
+        namespace: openshift-gitops
       source:
-        repoURL: ttps://github.com/eformat/acm-sno-lab.git
-        path: gitops/applications/vault
+        repoURL: https://github.com/eformat/acm-sno-lab.git
+        path: gitops/applications/assisted-service
         plugin:
           name: argocd-novault-plugin-kustomize
         targetRevision: main
       syncPolicy:
         automated:
-          prune: false
+          prune: true
           selfHeal: true
-        syncOptions:
-          - CreateNamespace=true
