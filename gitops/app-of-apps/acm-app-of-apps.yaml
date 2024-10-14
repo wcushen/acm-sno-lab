@@ -15,7 +15,7 @@ spec:
     path: gitops/app-of-apps/demo
     directory:
       include: "*.yaml"
-    repoURL: https://github.com/eformat/sno-llama.git
+    repoURL: https://github.com/eformat/acm-sno-lab.git
     targetRevision: main
   syncPolicy:
     automated:
