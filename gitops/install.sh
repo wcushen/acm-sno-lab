@@ -6,7 +6,7 @@ readonly ORANGE='\033[38;5;214m'
 readonly NC='\033[0m' # No Color
 readonly RUN_DIR=$(pwd)
 
-ENVIRONMENT=${ENVIRONMENT:-develop}
+ENVIRONMENT=${ENVIRONMENT:-acm}
 DRYRUN=${DRYRUN:-}
 BASE_DOMAIN=${BASE_DOMAIN:-}
 CLUSTER_NAME=${CLUSTER_NAME:-}
