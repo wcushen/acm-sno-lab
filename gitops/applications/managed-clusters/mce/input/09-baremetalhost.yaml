@@ -4,7 +4,7 @@ kind: BareMetalHost
 metadata:
   annotations:
     inspect.metal3.io: disabled
-    bmac.agent-install.openshift.io/hostname: "mce"
+    bmac.agent-install.openshift.io/hostname: "master-0"
   labels:
     infraenvs.agent-install.openshift.io: "mce"
   name: master-0
@@ -26,7 +26,7 @@ kind: BareMetalHost
 metadata:
   annotations:
     inspect.metal3.io: disabled
-    bmac.agent-install.openshift.io/hostname: "mce"
+    bmac.agent-install.openshift.io/hostname: "master-1"
   labels:
     infraenvs.agent-install.openshift.io: "mce"
   name: master-1
@@ -48,7 +48,7 @@ kind: BareMetalHost
 metadata:
   annotations:
     inspect.metal3.io: disabled
-    bmac.agent-install.openshift.io/hostname: "mce"
+    bmac.agent-install.openshift.io/hostname: "master-2"
   labels:
     infraenvs.agent-install.openshift.io: "mce"
   name: master-2
