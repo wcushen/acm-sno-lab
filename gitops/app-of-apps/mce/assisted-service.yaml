@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: assisted-service
+  name: mce-assisted-service
   namespace: openshift-gitops
 spec:
   goTemplate: true
@@ -17,7 +17,7 @@ spec:
     preserveResourcesOnDeletion: false
   template:
     metadata:
-      name: assisted-service-{{.name}}
+      name: mce-assisted-service-{{.name}}
       annotations:
         argocd.argoproj.io/compare-options: IgnoreExtraneous
     spec:
@@ -27,7 +27,7 @@ spec:
         namespace: openshift-gitops
       source:
         repoURL: https://github.com/eformat/acm-sno-lab.git
-        path: gitops/applications/assisted-service/overlay/acm
+        path: gitops/applications/assisted-service/overlay/mce
         plugin:
           name: argocd-novault-plugin-kustomize
         targetRevision: main
