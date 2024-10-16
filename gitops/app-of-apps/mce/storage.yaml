@@ -24,7 +24,7 @@ spec:
       project: default
       destination:
         server: "{{.server}}"
-        namespace: vault
+        namespace: default
       source:
         repoURL: https://github.com/eformat/acm-sno-lab.git
         path: gitops/applications/storage/mce
