@@ -8,7 +8,7 @@ spec:
   goTemplate: true
   generators:
     - clusterDecisionResource:
-        configMapRef: acm-placement
+        configMapRef: mce-placement
         labelSelector:
           matchLabels:
             cluster.open-cluster-management.io/placement: placement-mce
