@@ -13,7 +13,7 @@ spec:
   clusterDeploymentRef:
     name: mce
   imageSetRef:
-    name: img4.17.0-x86-64-appsub
+    name: openshift-v4.17.0
   networking:
     clusterNetwork:
       - cidr: 10.128.0.0/14
