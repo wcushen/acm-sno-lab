@@ -27,7 +27,7 @@ spec:
         namespace: openshift-gitops
       source:
         repoURL: https://github.com/eformat/acm-sno-lab.git
-        path: gitops/applications/storage/mce
+        path: gitops/applications/storage/overlay/mce
         plugin:
           name: argocd-novault-plugin-kustomize
         targetRevision: main
