@@ -1,14 +1,4 @@
 ---
-apiVersion: hive.openshift.io/v1
-kind: ClusterImageSet
-metadata:
-  labels:
-    channel: stable
-    visible: 'false'
-  name: openshift-v4.17.0
-spec:
-  releaseImage: quay.io/openshift-release-dev/ocp-release@sha256:fbad931c725b2e5b937b295b58345334322bdabb0b67da1c800a53686d7397da
----
 apiVersion: operator.open-cluster-management.io/v1
 kind: MultiClusterHub
 metadata:
