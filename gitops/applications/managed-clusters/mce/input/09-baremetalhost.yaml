@@ -14,7 +14,7 @@ spec:
   rootDeviceHints:
     deviceName: /dev/vda
   bmc:
-    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/9da7cc81-e3a9-4c95-a523-0621f18d79d4
+    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/aa035696-f470-4dd3-93a3-f5418d2743b5
     credentialsName: bmc-secret
     disableCertificateVerification: true
   bootMACAddress: '52:54:00:22:4d:4b'
@@ -36,7 +36,7 @@ spec:
   rootDeviceHints:
     deviceName: /dev/vda
   bmc:
-    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/f8fbe02c-4a88-4712-a9eb-1a904284bda3
+    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/d57af6a9-b191-4c34-a7d0-7acc274eb38c
     credentialsName: bmc-secret
     disableCertificateVerification: true
   bootMACAddress: '52:54:00:22:4d:4c'
@@ -58,7 +58,7 @@ spec:
   rootDeviceHints:
     deviceName: /dev/vda
   bmc:
-    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/aff39112-dd1d-403d-8d8b-2d33b697fa1d
+    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/31f1e741-d6b3-4800-a3b1-a7311411da4a
     credentialsName: bmc-secret
     disableCertificateVerification: true
   bootMACAddress: '52:54:00:22:4d:4d'
