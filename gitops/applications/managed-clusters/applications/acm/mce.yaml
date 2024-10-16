@@ -27,7 +27,7 @@ spec:
         namespace: openshift-gitops
       source:
         repoURL: https://github.com/eformat/acm-sno-lab.git
-        path: applications/managed-clusters/mce
+        path: gitops/applications/managed-clusters/mce
         targetRevision: main
         plugin:
           name: argocd-vault-plugin-kustomize
