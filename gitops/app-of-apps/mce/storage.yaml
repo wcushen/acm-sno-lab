@@ -17,7 +17,7 @@ spec:
     preserveResourcesOnDeletion: false
   template:
     metadata:
-      name: vault-{{.name}}
+      name: storage-mce-{{.name}}
       annotations:
         argocd.argoproj.io/compare-options: IgnoreExtraneous
     spec:
