@@ -3,4 +3,5 @@ apiVersion: multicluster.openshift.io/v1
 kind: MultiClusterEngine
 metadata:
   name: engine
+  namespace: multicluster-engine
 spec: {}
