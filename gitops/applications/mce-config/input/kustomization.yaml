@@ -3,4 +3,3 @@ resources:
   - namespace.yaml
   - operator-group.yaml
   - subscription.yaml
-#  - multicluster-engine.yaml
