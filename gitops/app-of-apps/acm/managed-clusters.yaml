@@ -1,0 +1,23 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: managed-clusters-app-of-apps
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: open-cluster-management-global-set
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    repoURL: https://github.com/eformat/acm-sno-lab.git
+    path: gitops/applications/managed-clusters/applications/acm
+    directory:
+      include: "*.yaml"
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true
+    syncOptions:
+      - Validate=true
