@@ -21,7 +21,7 @@ spec:
           enabled: true
         ipv6:
           enabled: false
-        macAddress: '52:54:00:22:4d:4b'
+        mac-address: '52:54:00:22:4d:4b'
         name: enp1s0
         state: up
         type: ethernet
@@ -57,7 +57,7 @@ spec:
           enabled: true
         ipv6:
           enabled: false
-        macAddress: '52:54:00:22:4d:4c'
+        mac-address: '52:54:00:22:4d:4c'
         name: enp1s0
         state: up
         type: ethernet
@@ -93,7 +93,7 @@ spec:
           enabled: true
         ipv6:
           enabled: false
-        macAddress: '52:54:00:22:4d:4d'
+        mac-address: '52:54:00:22:4d:4d'
         name: enp1s0
         state: up
         type: ethernet
