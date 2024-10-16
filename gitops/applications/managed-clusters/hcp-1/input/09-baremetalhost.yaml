@@ -1,0 +1,22 @@
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/hostname: "hcp-1"
+  labels:
+    infraenvs.agent-install.openshift.io: "hcp-1"
+  name: sno-1
+  namespace: hcp-1
+spec:
+  automatedCleaningMode: metadata
+  rootDeviceHints:
+    deviceName: /dev/vda
+  bmc:
+    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/
+    credentialsName: bmc-secret
+    disableCertificateVerification: true
+  bootMACAddress: '52:54:00:22:4d:4e'
+  bootMode: UEFI
+  online: true
