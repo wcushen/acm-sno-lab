@@ -86,7 +86,6 @@ spec:
     - requiredClusterSelector:
         labelSelector:
           matchExpressions:
-            - {key: vendor, operator: In, values: ["OpenShift"]}
             - {key: name, operator: In, values: ["mce"]}
 ---
 apiVersion: user.openshift.io/v1
