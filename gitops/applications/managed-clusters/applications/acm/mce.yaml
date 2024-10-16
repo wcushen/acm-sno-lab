@@ -17,7 +17,7 @@ spec:
     preserveResourcesOnDeletion: true
   template:
     metadata:
-      name: rainforest-{{.name}}
+      name: mce-{{.name}}
       annotations:
         argocd.argoproj.io/compare-options: IgnoreExtraneous
     spec:
