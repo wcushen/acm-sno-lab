@@ -11,11 +11,11 @@ spec:
   certPolicyController:
     enabled: true
   clusterLabels:
-    name: sushi
+    name: mce
     cloud: Baremetal
     vendor: auto-detect
-  clusterName: sushi
-  clusterNamespace: sushi
+  clusterName: mce
+  clusterNamespace: mce
   iamPolicyController:
     enabled: true
   policyController:
