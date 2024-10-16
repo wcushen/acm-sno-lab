@@ -32,3 +32,8 @@ spec:
     resources:
       requests:
         storage: 50Gi
+  osImages:
+    - openshiftVersion: "4.17"
+      version: "4.17.0"
+      url: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.17/4.17.0/rhcos-live.x86_64.iso"
+      cpuArchitecture: "x86_64"
