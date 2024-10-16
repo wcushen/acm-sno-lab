@@ -1,0 +1,66 @@
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/hostname: "mce"
+  labels:
+    infraenvs.agent-install.openshift.io: "mce"
+  name: master-0
+  namespace: mce
+spec:
+  automatedCleaningMode: metadata
+  rootDeviceHints:
+    deviceName: /dev/vda
+  bmc:
+    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/9da7cc81-e3a9-4c95-a523-0621f18d79d4
+    credentialsName: bmc-secret
+    disableCertificateVerification: true
+  bootMACAddress: '52:54:00:22:4d:4b'
+  bootMode: UEFI
+  online: true
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/hostname: "mce"
+  labels:
+    infraenvs.agent-install.openshift.io: "mce"
+  name: master-1
+  namespace: mce
+spec:
+  automatedCleaningMode: metadata
+  rootDeviceHints:
+    deviceName: /dev/vda
+  bmc:
+    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/f8fbe02c-4a88-4712-a9eb-1a904284bda3
+    credentialsName: bmc-secret
+    disableCertificateVerification: true
+  bootMACAddress: '52:54:00:22:4d:4c'
+  bootMode: UEFI
+  online: true
+---
+apiVersion: metal3.io/v1alpha1
+kind: BareMetalHost
+metadata:
+  annotations:
+    inspect.metal3.io: disabled
+    bmac.agent-install.openshift.io/hostname: "mce"
+  labels:
+    infraenvs.agent-install.openshift.io: "mce"
+  name: master-2
+  namespace: mce
+spec:
+  automatedCleaningMode: metadata
+  rootDeviceHints:
+    deviceName: /dev/vda
+  bmc:
+    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/aff39112-dd1d-403d-8d8b-2d33b697fa1d
+    credentialsName: bmc-secret
+    disableCertificateVerification: true
+  bootMACAddress: '52:54:00:22:4d:4d'
+  bootMode: UEFI
+  online: true
