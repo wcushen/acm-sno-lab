@@ -10,10 +10,12 @@ metadata:
   name: mce
   namespace: mce
 spec:
+  apiVIP: 192.168.130.100
   clusterDeploymentRef:
     name: mce
   imageSetRef:
     name: img4.17.0-x86-64-appsub
+  ingressVIP: 192.168.130.101
   networking:
     clusterNetwork:
       - cidr: 10.128.0.0/14
