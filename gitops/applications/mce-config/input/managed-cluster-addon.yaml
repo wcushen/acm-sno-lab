@@ -1,0 +1,8 @@
+---
+apiVersion: addon.open-cluster-management.io/v1alpha1
+kind: ManagedClusterAddOn
+metadata:
+  name: hypershift-addon
+  namespace: mce
+spec:
+  installNamespace: open-cluster-management-agent-addon
