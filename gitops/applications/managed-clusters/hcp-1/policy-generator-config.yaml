@@ -25,6 +25,6 @@ policyDefaults:
   policyAnnotations: {"argocd.argoproj.io/compare-options": "IgnoreExtraneous",
                       "avp.kubernetes.io/path": "kv/data/openshift-gitops/cluster-hcp-1"}
 policies:
-  - name: mce
+  - name: hcp-1
     manifests:
       - path: input/
