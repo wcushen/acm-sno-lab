@@ -37,3 +37,7 @@ spec:
       version: "4.17.0"
       url: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.17/4.17.0/rhcos-live.x86_64.iso"
       cpuArchitecture: "x86_64"
+    - openshiftVersion: "4.16"
+      version: "4.16.3"
+      url: "https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.16/4.16.3/rhcos-live.x86_64.iso"
+      cpuArchitecture: "x86_64"
