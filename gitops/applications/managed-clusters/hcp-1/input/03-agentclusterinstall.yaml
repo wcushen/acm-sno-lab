@@ -8,7 +8,7 @@ metadata:
   labels:
     app.kubernetes.io/instance: hcp-1
   name: hcp-1
-  namespace: hcp-1
+  namespace: clusters
 spec:
   apiVIP: 192.168.130.100
   clusterDeploymentRef:
