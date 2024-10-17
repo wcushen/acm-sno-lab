@@ -33,7 +33,7 @@ spec:
   pullSecret:
     name: pull-secret
   release:
-    image: quay.io/openshift-release-dev/ocp-release:4.17.0-multi
+    image: quay.io/openshift-release-dev/ocp-release:4.16.17-multi
   secretEncryption:
     aescbc:
       activeKey:
