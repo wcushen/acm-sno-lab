@@ -3,7 +3,7 @@ apiVersion: hive.openshift.io/v1
 kind: ClusterDeployment
 metadata:
   name: hcp-1
-  namespace: hcp-1
+  namespace: clusters
 spec:
   baseDomain: sno.redhatlabs.dev
   clusterName: hcp-1

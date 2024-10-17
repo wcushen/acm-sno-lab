@@ -3,7 +3,7 @@ apiVersion: hypershift.openshift.io/v1beta1
 kind: HostedCluster
 metadata:
   name: hcp-1
-  namespace: hcp-1
+  namespace: clusters
 spec:
   autoscaling: {}
   configuration:
@@ -85,7 +85,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: capi-provider-role
-  namespace: hcp-1
+  namespace: clusters
 rules:
 - apiGroups:
   - agent-install.openshift.io

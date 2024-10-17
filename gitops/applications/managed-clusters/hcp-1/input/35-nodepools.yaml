@@ -3,7 +3,7 @@ apiVersion: hypershift.openshift.io/v1beta1
 kind: NodePool
 metadata:
   name: hcp-1
-  namespace: hcp-1
+  namespace: clusters
 spec:
   arch: amd64
   clusterName: hcp-1

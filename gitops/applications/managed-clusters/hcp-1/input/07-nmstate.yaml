@@ -3,7 +3,7 @@ apiVersion: agent-install.openshift.io/v1beta1
 kind: NMStateConfig
 metadata:
   name: hcp-1
-  namespace: hcp-1
+  namespace: clusters
   labels:
     cluster-name: hcp-1
 spec:
