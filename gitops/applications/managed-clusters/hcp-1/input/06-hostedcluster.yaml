@@ -6,7 +6,14 @@ metadata:
   namespace: hcp-1
 spec:
   autoscaling: {}
-  configuration: {}
+  configuration:
+    oauth:
+      identityProviders:
+      - name: htpasswd_provider
+        type: HTPasswd
+        htpasswd:
+          fileData:
+            name: htpasswdidp-secret
   controllerAvailabilityPolicy: SingleReplica
   dns:
     baseDomain: sno.redhatlabs.dev
@@ -19,6 +26,7 @@ spec:
     managementType: Managed
   fips: false
   infraID: hcp-1
+  infrastructureAvailabilityPolicy: SingleReplica
   networking:
     clusterNetwork:
     - cidr: 10.128.0.0/14
