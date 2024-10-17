@@ -5,6 +5,7 @@ metadata:
   annotations:
     inspect.metal3.io: disabled
     bmac.agent-install.openshift.io/hostname: "hcp-1"
+    bmac.agent-install.openshift.io/role: "worker"
   labels:
     infraenvs.agent-install.openshift.io: "hcp-1"
   name: sno-1
