@@ -10,5 +10,5 @@ spec:
     components:
     - enabled: false
       name: local-cluster
-    - enabled: false
+    - enabled: true  ## FIXME - false for ACM > MCE pattern. but want UI to test.
       name: hypershift-local-hosting
