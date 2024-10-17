@@ -8,7 +8,7 @@ spec:
   availabilityConfig: Basic
   overrides:
     components:
-    - enabled: true  ## FIXME - false for ACM > MCE pattern. but want UI to test.
+    - enabled: false
       name: local-cluster
     - enabled: true  ## FIXME - false for ACM > MCE pattern. but want UI to test.
       name: hypershift-local-hosting
