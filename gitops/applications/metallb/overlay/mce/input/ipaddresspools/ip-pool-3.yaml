@@ -1,0 +1,11 @@
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: pool-3
+  namespace: metallb-system
+spec:
+  addresses:
+    - 77.77.77.100-77.77.77.200
+  autoAssign: true
+  avoidBuggyIPs: false

@@ -1,0 +1,6 @@
+---
+resources:
+  - ../../../base
+  - bgppeers
+  - ipaddresspools
+  - bgpadvertisements
