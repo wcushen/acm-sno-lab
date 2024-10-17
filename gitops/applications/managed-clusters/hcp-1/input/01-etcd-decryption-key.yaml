@@ -6,7 +6,7 @@ kind: Secret
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "0"
-    hypershift.openshift.io/cluster: hcp-1/hcp-1
+    hypershift.openshift.io/cluster: hcp-1
   creationTimestamp: null
   labels:
     hypershift.openshift.io/auto-created-for-infra: hcp-1

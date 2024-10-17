@@ -6,7 +6,7 @@ metadata:
     agent-install.openshift.io/install-config-overrides: '{"networking":{"networkType":"OVNKubernetes"}}'
     argocd.argoproj.io/sync-wave: '1'
   labels:
-    app.kubernetes.io/instance: clusters
+    app.kubernetes.io/instance: hcp-1
   name: hcp-1
   namespace: hcp-1
 spec:
