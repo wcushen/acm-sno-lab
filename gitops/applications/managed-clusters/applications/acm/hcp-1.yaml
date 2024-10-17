@@ -14,7 +14,7 @@ spec:
             cluster.open-cluster-management.io/placement: placement-hub-openshift
         requeueAfterSeconds: 180
   syncPolicy:
-    preserveResourcesOnDeletion: true
+    preserveResourcesOnDeletion: false
   template:
     metadata:
       name: hcp-1-{{.name}}
@@ -33,5 +33,5 @@ spec:
           name: argocd-vault-plugin-kustomize
       syncPolicy:
         automated:
-          prune: false
+          prune: true
           selfHeal: true
