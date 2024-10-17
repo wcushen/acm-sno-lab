@@ -1,0 +1,19 @@
+---
+apiVersion: hypershift.openshift.io/v1beta1
+kind: NodePool
+metadata:
+  name: hcp-1
+  namespace: hcp-1
+spec:
+  arch: amd64
+  clusterName: hcp-1
+  management:
+    autoRepair: false
+    upgradeType: InPlace
+  nodeDrainTimeout: 0s
+  platform:
+    agent: {}
+    type: Agent
+  release:
+    image: quay.io/openshift-release-dev/ocp-release:4.17.0-multi
+  replicas: 1

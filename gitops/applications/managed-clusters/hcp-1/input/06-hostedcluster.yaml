@@ -1,0 +1,87 @@
+---
+apiVersion: hypershift.openshift.io/v1beta1
+kind: HostedCluster
+metadata:
+  name: hcp-1
+  namespace: hcp-1
+spec:
+  autoscaling: {}
+  configuration: {}
+  controllerAvailabilityPolicy: SingleReplica
+  dns:
+    baseDomain: sno.redhatlabs.dev
+  etcd:
+    managed:
+      storage:
+        persistentVolume:
+          size: 8Gi
+        type: PersistentVolume
+    managementType: Managed
+  fips: false
+  infraID: hcp-1
+  networking:
+    clusterNetwork:
+    - cidr: 10.128.0.0/14
+    networkType: OVNKubernetes
+    serviceNetwork:
+    - cidr: 172.31.0.0/16
+  olmCatalogPlacement: management
+  platform:
+    agent:
+      agentNamespace: hcp-1
+    type: Agent
+  pullSecret:
+    name: pull-secret
+  release:
+    image: quay.io/openshift-release-dev/ocp-release:4.17.0-multi
+  secretEncryption:
+    aescbc:
+      activeKey:
+        name: hcp-1-etcd-encryption-key
+    type: aescbc
+  services:
+  - service: APIServer
+    servicePublishingStrategy:
+      nodePort:
+        address: 192.168.130.11
+      type: NodePort
+  - service: OAuthServer
+    servicePublishingStrategy:
+      nodePort:
+        address: 192.168.130.11
+      type: NodePort
+  - service: OIDC
+    servicePublishingStrategy:
+      nodePort:
+        address: 192.168.130.11
+      type: None
+  - service: Konnectivity
+    servicePublishingStrategy:
+      nodePort:
+        address: 192.168.130.11
+      type: NodePort
+  - service: Ignition
+    servicePublishingStrategy:
+      nodePort:
+        address: 192.168.130.11
+      type: NodePort
+  - service: OVNSbDb
+    servicePublishingStrategy:
+      nodePort:
+        address: 192.168.130.11
+      type: NodePort
+  sshKey:
+    name: hcp-1-ssh-key
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: capi-provider-role
+  namespace: hcp-1
+rules:
+- apiGroups:
+  - agent-install.openshift.io
+  resources:
+  - agents
+  verbs:
+  - '*'
