@@ -5,6 +5,7 @@ resources:
   - 01-etcd-decryption-key.yaml
   - 01-sealed-bmc-secret.yaml
   - 01-sealed-pull-secret.yaml
+  - 03-agentclusterinstall.yaml
   - 04-clusterdeployment.yaml
   - 06-hostedcluster.yaml
   - 07-nmstate.yaml
