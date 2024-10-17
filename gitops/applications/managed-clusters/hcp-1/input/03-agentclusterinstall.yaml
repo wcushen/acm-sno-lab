@@ -14,7 +14,7 @@ spec:
   clusterDeploymentRef:
     name: hcp-1
   imageSetRef:
-    name: img4.17.0-x86-64-appsub
+    name: img4.16.15-x86-64-appsub
   ingressVIP: 192.168.130.101
   networking:
     clusterNetwork:

@@ -15,5 +15,5 @@ spec:
     agent: {}
     type: Agent
   release:
-    image: quay.io/openshift-release-dev/ocp-release:4.17.0-multi
+    image: quay.io/openshift-release-dev/ocp-release:4.16.17-multi
   replicas: 1
