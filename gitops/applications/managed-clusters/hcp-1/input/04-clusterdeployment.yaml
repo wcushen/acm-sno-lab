@@ -1,0 +1,23 @@
+---
+apiVersion: hive.openshift.io/v1
+kind: ClusterDeployment
+metadata:
+  name: hcp-1
+  namespace: hcp-1
+spec:
+  baseDomain: sno.redhatlabs.dev
+  clusterName: hcp-1
+  controlPlaneConfig:
+    servingCertificates: {}
+  clusterInstallRef:
+    group: extensions.hive.openshift.io
+    kind: AgentClusterInstall
+    name: hcp-1
+    version: v1beta1
+  platform:
+    agentBareMetal:
+      agentSelector:
+        matchLabels:
+          cluster-name: "hcp-1"
+  pullSecretRef:
+    name: pull-secret
