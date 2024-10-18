@@ -23,7 +23,7 @@ spec:
   automatedCleaningMode: disabled
   bmc:
     disableCertificateVerification: True
-    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/948b43c9-967b-43bc-98d4-08da9509ee53
+    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/64ec1076-3e03-494e-9c89-8669bee85d48
     credentialsName: worker-3-bmc-secret
   bootMACAddress: '52:54:00:22:4d:5b'
   online: true
