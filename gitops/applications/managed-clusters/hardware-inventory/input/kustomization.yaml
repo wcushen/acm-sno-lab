@@ -1,6 +1,7 @@
 ---
 resources:
   - namespace.yaml
+  - pull-secret.yaml
   - infra-env.yaml
   # - worker-0.yaml
   # - worker-1.yaml
