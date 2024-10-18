@@ -39,7 +39,9 @@ spec:
       type: Route
   - service: Konnectivity
     servicePublishingStrategy:
-      type: Route
+      nodePort:
+        address: 192.168.130.11
+      type: NodePort
   - service: Ignition
     servicePublishingStrategy:
       nodePort:
