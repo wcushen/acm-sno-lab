@@ -1,0 +1,7 @@
+---
+resources:
+  - namespace.yaml
+  - pull-secret.yaml
+  - ssh-key-secret.yaml
+  - hostedcluster.yaml
+
