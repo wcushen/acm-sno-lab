@@ -20,9 +20,7 @@ metadata:
     inspect.metal3.io: disabled
     bmac.agent-install.openshift.io/hostname: worker-1
 spec:
-  automatedCleaningMode: metadata
-  rootDeviceHints:
-    deviceName: /dev/vda
+  automatedCleaningMode: disabled
   bmc:
     disableCertificateVerification: True
     address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/9a3f0d20-3203-4a11-9eed-e247f450bd1f
