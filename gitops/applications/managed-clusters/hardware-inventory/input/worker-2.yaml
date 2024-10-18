@@ -27,3 +27,5 @@ spec:
     credentialsName: worker-2-bmc-secret
   bootMACAddress: '52:54:00:22:4d:5a'
   online: true
+  rootDeviceHints:
+    deviceName: /dev/vda
