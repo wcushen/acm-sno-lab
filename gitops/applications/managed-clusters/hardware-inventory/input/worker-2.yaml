@@ -25,7 +25,7 @@ spec:
     deviceName: /dev/vda
   bmc:
     disableCertificateVerification: True
-    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/
+    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/dd44ab1d-1f4c-44ab-9859-ee27cdc54768
     credentialsName: worker-2-bmc-secret
-  bootMACAddress: '52:54:00:22:4d:4e'
+  bootMACAddress: '52:54:00:22:4d:5a'
   online: true
