@@ -11,7 +11,7 @@ spec:
   pullSecret:
     name: pull-secret-hcp-1
   sshKey:
-    name: sshkey-hcp-1
+    name: ssh-key-hcp-1
   networking:
     clusterNetwork:
       - cidr: 10.128.0.0/14
