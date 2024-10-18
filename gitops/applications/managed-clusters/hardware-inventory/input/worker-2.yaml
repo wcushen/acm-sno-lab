@@ -15,7 +15,7 @@ metadata:
   name: worker-2
   namespace: hardware-inventory
   labels:
-    infraenvs.agent-install.openshift.io: hosted
+    infraenvs.agent-install.openshift.io: bare-metal
   annotations:
     inspect.metal3.io: disabled
     bmac.agent-install.openshift.io/hostname: worker-2
