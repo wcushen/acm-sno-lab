@@ -20,10 +20,10 @@ metadata:
     inspect.metal3.io: disabled
     bmac.agent-install.openshift.io/hostname: worker-1
 spec:
-  automatedCleaningMode: disabled
+  automatedCleaningMode: metadata
   bmc:
     disableCertificateVerification: True
-    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/e50ffddf-c25e-43af-9a52-24be0584e56b
+    address: redfish-virtualmedia+http://172.23.3.24:8000/redfish/v1/Systems/9541d344-565d-452f-a817-13a9f13e273c
     credentialsName: worker-1-bmc-secret
   bootMACAddress: '52:54:00:22:4d:4f'
   online: true
