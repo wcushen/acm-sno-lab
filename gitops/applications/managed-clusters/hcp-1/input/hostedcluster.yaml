@@ -35,7 +35,7 @@ spec:
       type: NodePort
   - service: OAuthServer
     servicePublishingStrategy:
-      type: Route
+      type: LoadBalancer
   - service: OIDC
     servicePublishingStrategy:
       nodePort:
