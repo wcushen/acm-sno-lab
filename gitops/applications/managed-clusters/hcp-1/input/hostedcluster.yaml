@@ -35,7 +35,9 @@ spec:
       type: NodePort
   - service: OAuthServer
     servicePublishingStrategy:
-      type: LoadBalancer
+      nodePort:
+        address: 192.168.130.11
+      type: NodePort
   - service: OIDC
     servicePublishingStrategy:
       nodePort:
