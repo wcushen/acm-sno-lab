@@ -35,10 +35,14 @@ spec:
       type: NodePort
   - service: OAuthServer
     servicePublishingStrategy:
-      type: Route
+      nodePort:
+        address: 192.168.130.11
+      type: NodePort
   - service: OIDC
     servicePublishingStrategy:
-      type: Route
+      nodePort:
+        address: 192.168.130.11
+      type: NodePort
   - service: Konnectivity
     servicePublishingStrategy:
       nodePort:
