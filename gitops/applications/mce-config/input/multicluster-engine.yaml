@@ -10,5 +10,5 @@ spec:
     components:
     - enabled: true # false
       name: local-cluster
-    - enabled: false
+    - enabled: true # false
       name: hypershift-local-hosting
