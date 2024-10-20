@@ -27,8 +27,8 @@ policies:
   - name: mce-config
     manifests:
       - path: input/
-  - name: hypershift-mce
-    manifests:
-      - path: input/managed-cluster-addon.yaml
-    placement:
-      placementName: placement-hub-openshift
+  # - name: hypershift-mce
+  #   manifests:
+  #     - path: input/managed-cluster-addon.yaml
+  #   placement:
+  #     placementName: placement-hub-openshift
