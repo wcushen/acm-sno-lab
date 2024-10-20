@@ -8,7 +8,7 @@ spec:
   availabilityConfig: Basic
   overrides:
     components:
-    - enabled: false
+    - enabled: true # false
       name: local-cluster
     - enabled: false
       name: hypershift-local-hosting
