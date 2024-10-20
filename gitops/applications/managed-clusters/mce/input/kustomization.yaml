@@ -5,7 +5,7 @@ resources:
 - 03-agentclusterinstall.yaml
 - 04-clusterdeployment.yaml
 - 05-klusterlet.yaml
-- 06-managedcluster.yaml
+#- 06-managedcluster.yaml
 - 07-nmstate.yaml
 - 08-infraenv.yaml
 - 09-baremetalhost.yaml
