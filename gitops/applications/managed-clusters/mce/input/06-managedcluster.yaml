@@ -6,6 +6,8 @@ metadata:
   namespace: mce
   labels:
     name: mce
+  annotations:
+    agent.open-cluster-management.io/klusterlet-config: mce-import-klusterlet-config
 spec:
   hubAcceptsClient: true
   leaseDurationSeconds: 60
