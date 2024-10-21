@@ -6,13 +6,12 @@ metadata:
   namespace: mce
 spec:
   applicationManager:
-#    argocdCluster: false
     enabled: false
   certPolicyController:
     enabled: true
   clusterLabels:
-    name: mce
     cloud: Baremetal
+    name: mce
     vendor: auto-detect
   clusterName: mce
   clusterNamespace: mce
@@ -21,4 +20,15 @@ spec:
   policyController:
     enabled: true
   searchCollector:
-    enabled: true
+    enabled: false
+---
+kind: KlusterletConfig
+apiVersion: config.open-cluster-management.io/v1alpha1
+metadata:
+  name: mce-import-klusterlet-config
+  namespace: mce
+spec:
+  installMode:
+    type: noOperator
+    noOperator:
+       postfix: mce-import
