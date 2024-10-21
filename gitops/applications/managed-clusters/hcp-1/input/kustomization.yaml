@@ -5,3 +5,5 @@ resources:
   - ssh-key-secret.yaml
   - hostedcluster.yaml
   - nodepool.yaml
+  - htpasswd-rbac.yaml
+  - htpasswd-secret.yaml
