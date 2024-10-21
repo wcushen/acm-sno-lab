@@ -1,0 +1,19 @@
+---
+apiVersion: hypershift.openshift.io/v1beta1
+kind: NodePool
+metadata:
+  name: worker-hcp-3
+  namespace: hosted
+spec:
+  clusterName: hcp-3
+  replicas: 1
+  management:
+    autoRepair: false
+    upgradeType: InPlace
+  platform:
+    type: Agent
+    agent:
+      agentLabelSelector:
+        matchLabels: {}
+  release:
+    image: quay.io/openshift-release-dev/ocp-release:4.16.17-multi

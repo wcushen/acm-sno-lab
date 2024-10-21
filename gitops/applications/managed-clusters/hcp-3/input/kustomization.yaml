@@ -1,0 +1,7 @@
+---
+resources:
+  - pull-secret.yaml
+  - ssh-key-secret.yaml
+  - hostedcluster.yaml
+  - nodepool.yaml
+  - htpasswd-secret.yaml
