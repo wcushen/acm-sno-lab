@@ -927,7 +927,9 @@ backend ssl.apps.hcp-2.sno.redhatlabs.dev
 
 ## DNS on Client Host
 
-Since we have no DNS - we point our Clients `/etc/hosts` to the Base Host and let HAProxy do the rest.
+I'm running from a linux laptop client that VPN's into the Base Host - 172.23.3.24
+
+Since we have no DNS in the lab - we point our Clients `/etc/hosts` to the Base Host and let HAProxy do the rest.
 
 ```bash
 ##### ACM
