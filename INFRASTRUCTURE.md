@@ -92,40 +92,6 @@ cat <<EOF > /etc/libvirt/qemu/networks/sno.xml
   <bridge name='virbr1' stp='on' delay='0'/>
   <mac address='52:54:00:22:4d:3a'/>
   <domain name='sno.redhatlabs.dev'/>
-  <dns enable='yes'>
-    <host ip='192.168.130.10'>
-      <hostname>api.acm.sno.redhatlabs.dev</hostname>
-      <hostname>api-int.acm.sno.redhatlabs.dev</hostname>
-      <hostname>console-openshift-console.apps.acm.sno.redhatlabs.dev</hostname>
-      <hostname>oauth-openshift.apps.acm.sno.redhatlabs.dev</hostname>
-      <hostname>canary-openshift-ingress-canary.apps.acm.sno.redhatlabs.dev</hostname>
-      <hostname>assisted-image-service-multicluster-engine.apps.acm.sno.redhatlabs.dev</hostname>
-      <hostname>assisted-service-multicluster-engine.apps.acm.sno.redhatlabs.dev</hostname>
-    </host>
-    <host ip='192.168.130.11'>
-      <hostname>api.mce.sno.redhatlabs.dev</hostname>
-      <hostname>api-int.mce.sno.redhatlabs.dev</hostname>
-      <hostname>console-openshift-console.apps.mce.sno.redhatlabs.dev</hostname>
-      <hostname>oauth-openshift.apps.mce.sno.redhatlabs.dev</hostname>
-      <hostname>canary-openshift-ingress-canary.apps.mce.sno.redhatlabs.dev</hostname>    
-    </host>
-    <host ip='192.168.130.101'>
-      <hostname>assisted-image-service-multicluster-engine.apps.mce.sno.redhatlabs.dev</hostname>
-      <hostname>assisted-service-multicluster-engine.apps.mce.sno.redhatlabs.dev</hostname>
-      <hostname>oauth-hosted-hcp-1.apps.mce.sno.redhatlabs.dev</hostname>
-      <hostname>oauth-hosted-hcp-2.apps.mce.sno.redhatlabs.dev</hostname>
-      <hostname>oauth-hosted-hcp-3.apps.mce.sno.redhatlabs.dev</hostname>
-      <hostname>oauth-hosted-hcp-4.apps.mce.sno.redhatlabs.dev</hostname>
-    </host>
-    <host ip='192.168.130.14'>
-      <hostname>console-openshift-console.apps.hcp-1.sno.redhatlabs.dev</hostname>
-      <hostname>canary-openshift-ingress-canary.apps.hcp-1.sno.redhatlabs.dev</hostname>
-    </host>
-    <host ip='192.168.130.17'>
-      <hostname>console-openshift-console.apps.hcp-2.sno.redhatlabs.dev</hostname>
-      <hostname>canary-openshift-ingress-canary.apps.hcp-2.sno.redhatlabs.dev</hostname>      
-    </host>    
-  </dns>
   <ip family='ipv4' address='192.168.130.1' netmask='255.255.255.0'>
     <dhcp>
       <range start='192.168.130.20' end='192.168.130.254'/>
@@ -156,6 +122,79 @@ Any changes you must destroy/start vm's.
 ```bash
 virsh net-destroy sno
 virsh net-undefine sno
+```
+
+## DNS Base Host
+
+Enable dnsmasq through NetworkManager.
+
+```bash
+cat << EOF > /etc/NetworkManager/conf.d/00-use-dnsmasq.conf
+[main]
+dns=dnsmasq
+EOF
+```
+
+Define hosts - the format is the same as /etc/hosts
+
+```bash
+cat << EOF > /etc/sno.redhatlabs.dev.dnsmasq.hosts
+##### SNO
+192.168.130.10     api.acm.sno.redhatlabs.dev
+192.168.130.10     api-int.acm.sno.redhatlabs.dev
+192.168.130.10     oauth-openshift.apps.acm.sno.redhatlabs.dev
+192.168.130.10     console-openshift-console.apps.acm.sno.redhatlabs.dev
+192.168.130.10     canary-openshift-ingress-canary.apps.acm.sno.redhatlabs.dev
+192.168.130.10     grafana-openshift-monitoring.apps.acm.sno.redhatlabs.dev
+192.168.130.10     thanos-querier-openshift-monitoring.apps.acm.sno.redhatlabs.dev
+192.168.130.10     assisted-image-service-multicluster-engine.apps.acm.sno.redhatlabs.dev
+192.168.130.10     assisted-service-multicluster-engine.apps.acm.sno.redhatlabs.dev
+##### MCE
+192.168.130.11     api-int.mce.sno.redhatlabs.dev
+192.168.130.100    api.mce.sno.redhatlabs.dev
+192.168.130.101    console-openshift-console.apps.mce.sno.redhatlabs.dev
+192.168.130.101    oauth-openshift.apps.mce.sno.redhatlabs.dev
+192.168.130.101    canary-openshift-ingress-canary.apps.mce.sno.redhatlabs.dev
+192.168.130.101    oauth-openshift.apps.mce.sno.redhatlabs.dev
+192.168.130.101    assisted-image-service-multicluster-engine.apps.mce.sno.redhatlabs.dev
+192.168.130.101    assisted-service-multicluster-engine.apps.mce.sno.redhatlabs.dev
+192.168.130.101    oauth-hosted-hcp-1.apps.mce.sno.redhatlabs.dev
+192.168.130.101    oauth-hosted-hcp-2.apps.mce.sno.redhatlabs.dev
+192.168.130.101    oauth-hosted-hcp-3.apps.mce.sno.redhatlabs.dev
+192.168.130.101    oauth-hosted-hcp-4.apps.mce.sno.redhatlabs.dev
+##### HCP
+192.168.130.14     console-openshift-console.apps.hcp-1.sno.redhatlabs.dev
+192.168.130.14     canary-openshift-ingress-canary.apps.hcp-1.sno.redhatlabs.dev
+192.168.130.17     console-openshift-console.apps.hcp-2.sno.redhatlabs.dev
+192.168.130.17     canary-openshift-ingress-canary.apps.hcp-2.sno.redhatlabs.dev
+EOF
+```
+
+Create config.
+
+```bash
+cat << EOF > /etc/NetworkManager/dnsmasq.d/01-DNS-redhatlabs.dev.conf
+# local dns
+local=/sno.redhatlabs.dev/
+addn-hosts=/etc/sno.redhatlabs.dev.dnsmasq.hosts
+
+domain-needed
+bogus-priv
+
+# Automatically add <domain> to simple names in a hosts-file.
+expand-hosts
+
+# Upstream public
+no-poll
+server=172.23.3.254
+server=1.1.1.1
+EOF
+```
+
+Restart NetworkManager to pick up changes.
+
+```bash
+systemctl restart NetworkManager
 ```
 
 ## ACM Hub Install
@@ -768,8 +807,6 @@ stringData:
 
 ## HAProxy on Base Host
 
-This should all be in dnsmasq/named/bind ! but hey ... for now 🤷.
-
 As we only have a single Base Host (which is also our point of entry for all clusters) we use HAproxy as an external load balancer so we can route from the Client.
 
 ```bash
@@ -925,11 +962,11 @@ backend ssl.apps.hcp-2.sno.redhatlabs.dev
     server master-0 192.168.130.17:443 check
 ```
 
-## DNS on Client Host
+## DNS on a Client Host
 
 I'm running from a linux laptop client that VPN's into the Base Host - 172.23.3.24
 
-Since we have no DNS in the lab - we point our Clients `/etc/hosts` to the Base Host and let HAProxy do the rest.
+Since we only have simple dnsmasq in the lab - we point our laptop Clients `/etc/hosts` to the Base Host and let HAProxy do the rest.
 
 ```bash
 ##### ACM
