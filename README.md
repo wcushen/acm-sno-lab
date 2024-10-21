@@ -32,6 +32,11 @@ MCE Clusters
 
 ![mce-clusters.png](images/mce-clusters.png)
 
+InfraEnvs - MCE & BareMetal
+
+![mce-infra-env.png](images/mce-infra-env.png)
+![bm-infra-env.png](images/bm-infra-env.png)
+
 GitOps Clusters
 
 ![gitops-clusters.png](images/gitops-clusters.png)
