@@ -31,3 +31,7 @@ MCE Clusters
 - Lifecycle HCP Spokes via GitOps from ACM
 
 ![mce-clusters.png](images/mce-clusters.png)
+
+GitOps Clusters
+
+![gitops-clusters.png](images/gitops-clusters.png)
