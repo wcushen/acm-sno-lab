@@ -930,19 +930,19 @@ backend ssl.apps.hcp-2.sno.redhatlabs.dev
 Since we have no DNS - we point our Clients `/etc/hosts` to the Base Host and let HAProxy do the rest.
 
 ```bash
-##### SNO ACM LAB
+##### ACM
 172.23.3.24     api.acm.sno.redhatlabs.dev
 172.23.3.24     oauth-openshift.apps.acm.sno.redhatlabs.dev
 172.23.3.24     console-openshift-console.apps.acm.sno.redhatlabs.dev
 172.23.3.24     grafana-openshift-monitoring.apps.acm.sno.redhatlabs.dev
 172.23.3.24     thanos-querier-openshift-monitoring.apps.acm.sno.redhatlabs.dev global-policy-server-openshift-gitops.apps.acm.sno.redhatlabs.dev vault.apps.acm.sno.redhatlabs.dev hcp-cli-download-multicluster-engine.apps.acm.sno.redhatlabs.dev
-##### SNO MCE LAB
+##### MCE
 172.23.3.24     api.mce.sno.redhatlabs.dev
 172.23.3.24     oauth-openshift.apps.mce.sno.redhatlabs.dev
 172.23.3.24     console-openshift-console.apps.mce.sno.redhatlabs.dev
 172.23.3.24     grafana-openshift-monitoring.apps.mce.sno.redhatlabs.dev
 172.23.3.24     thanos-querier-openshift-monitoring.apps.mce.sno.redhatlabs.dev hcp-cli-download-multicluster-engine.apps.mce.sno.redhatlabs.dev assisted-image-service-multicluster-engine.apps.mce.sno.redhatlabs.dev
-##### hcp
+##### HCP
 172.23.3.24     console-openshift-console.apps.hcp-1.sno.redhatlabs.dev
 172.23.3.24     oauth-hosted-hcp-1.apps.mce.sno.redhatlabs.dev
 172.23.3.24     console-openshift-console.apps.hcp-2.sno.redhatlabs.dev
