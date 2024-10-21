@@ -1,3 +1,4 @@
 ---
 resources:
   - policy-addon-ns.yaml
+  - policy-hypershift-addon.yaml

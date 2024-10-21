@@ -1,0 +1,40 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: acm-addon-hypershift
+  annotations:
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+    policy.open-cluster-management.io/categories: CM Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+spec:
+  remediationAction: enforce
+  disabled: false
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: addon-hypershift-config
+        spec:
+          object-templates:
+            - complianceType: musthave
+              objectDefinition:
+                apiVersion: addon.open-cluster-management.io/v1alpha1
+                kind: AddOnDeploymentConfig
+                metadata:
+                  name: hypershift-addon-deploy-config
+                  namespace: multicluster-engine
+                spec:
+                  agentInstallNamespace: open-cluster-management-agent-addon-discovery
+                  customizedVariables:
+                  - name: disableMetrics
+                    value: "true"
+                  - name: disableHOManagement
+                    value: "true"
+                  - name: hcMaxNumber
+                    value: "80"
+                  - name: hcThresholdNumber
+                    value: "60"
+          remediationAction: inform
+          severity: low

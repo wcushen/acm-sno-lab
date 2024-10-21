@@ -7,6 +7,7 @@ spec:
   description: "Policies for cluster configuration"
   policies:
     - acm-addon-ns
+    - acm-addon-hypershift
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
