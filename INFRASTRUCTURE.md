@@ -349,27 +349,15 @@ virsh edit acm
 
 Once ACM Hub deployed, bootstrap ArgoCD and ACM.
 
-Subscriptions.
-
 ```bash
-oc apply -f bootstrap/setup-subs.yaml
+./install.sh -d
 ```
 
-Deploy CR's until all succeed.
-
-```bash
-oc apply -f bootstrap/setup-cr.yaml
-```
-
-## Deploy ACM app-of-apps
+## ACM app-of-apps
 
 [acm-app-of-apps.yaml](gitops/app-of-apps/acm-app-of-apps.yaml) defines all of the Applications in the ACM Hub cluster.
 
 When learning what these apps do - you can rename `*.yaml` files to `*.yaml.undeployed` in the folder and add in the apps as you need.
-
-```bash
-oc apply gitops/app-of-apps/acm-app-of-apps.yaml
-```
 
 ## Vault Setup
 
