@@ -44,3 +44,9 @@ GitOps Clusters
 Policy-as-Code
 
 ![policy-as-code.png](images/policy-as-code.png)
+
+## Useful Links
+
+- https://github.com/stolostron/hypershift-addon-operator/blob/main/docs/discovering_hostedclusters.md
+- https://github.com/stolostron/hypershift-addon-operator/blob/main/docs/hosting_cluster_topologies.md
+- https://labs.sysdeseng.com/hypershift-baremetal-lab/4.15/hcp-deployment.html
