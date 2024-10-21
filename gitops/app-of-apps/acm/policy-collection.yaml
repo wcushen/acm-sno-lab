@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: policy-collection-acm
+  name: policy-collection
   namespace: openshift-gitops
 spec:
   destination:
@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/eformat/acm-sno-lab.git
-    path: gitops/policy-collection/overlays/acm
+    path: gitops/policy-collection
     targetRevision: main
     plugin:
       name: argocd-vault-plugin-kustomize
