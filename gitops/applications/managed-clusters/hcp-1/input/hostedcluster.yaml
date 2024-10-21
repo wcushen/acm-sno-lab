@@ -6,6 +6,14 @@ metadata:
   namespace: hosted
   labels:
 spec:
+  configuration:
+    oauth:
+      identityProviders:
+      - name: htpasswd_provider
+        type: HTPasswd
+        htpasswd:
+          fileData:
+            name: htpasswdidp-secret-hcp-1
   release:
     image: quay.io/openshift-release-dev/ocp-release:4.16.17-multi
   pullSecret:
