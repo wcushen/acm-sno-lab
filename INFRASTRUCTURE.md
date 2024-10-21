@@ -765,3 +765,186 @@ stringData:
   autoImportRetry: "5"
   kubeconfig: <kubeconfig>
 ```
+
+## HAProxy on Base Host
+
+This should all be in dnsmasq/named/bind ! but hey ... for now 🤷.
+
+As we only have a single Base Host (which is also our point of entry for all clusters) we use HAproxy as an external load balancer so we can route from the Client.
+
+```bash
+# Example configuration for a possible web application.  See the
+# full configuration options online.
+#
+#   https://www.haproxy.org/download/1.8/doc/configuration.txt
+#
+#---------------------------------------------------------------------
+
+#---------------------------------------------------------------------
+# Global settings
+#---------------------------------------------------------------------
+global
+    # to have these messages end up in /var/log/haproxy.log you will
+    # need to:
+    #
+    # 1) configure syslog to accept network log events.  This is done
+    #    by adding the '-r' option to the SYSLOGD_OPTIONS in
+    #    /etc/sysconfig/syslog
+    #
+    # 2) configure local2 events to go to the /var/log/haproxy.log
+    #   file. A line like the following can be added to
+    #   /etc/sysconfig/syslog
+    #
+    #    local2.*                       /var/log/haproxy.log
+    #
+    log         127.0.0.1 local2
+
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     4000
+    user        haproxy
+    group       haproxy
+    daemon
+
+    # turn on stats unix socket
+    stats socket /var/lib/haproxy/stats
+
+    # utilize system-wide crypto-policies
+    ssl-default-bind-ciphers PROFILE=SYSTEM
+    ssl-default-server-ciphers PROFILE=SYSTEM
+
+#---------------------------------------------------------------------
+# openshift 4
+#---------------------------------------------------------------------
+defaults
+    mode                    http
+    log                     global
+    option                  httplog
+    option                  dontlognull
+    option forwardfor       except 127.0.0.0/8
+    option                  redispatch
+    retries                 3
+    timeout http-request    10s
+    timeout queue           1m
+    timeout connect         10s
+    timeout client          300s
+    timeout server          300s
+    timeout http-keep-alive 10s
+    timeout check           10s
+    maxconn                 20000
+
+# Useful for debugging, dangerous for production
+listen stats
+    bind :9000
+    mode http
+    stats enable
+    stats uri /
+
+frontend openshift-api-server
+    bind *:6443
+    mode tcp
+    tcp-request inspect-delay 5s
+    tcp-request content accept if { req_ssl_hello_type 1 }
+    acl is_acm req.ssl_sni -m end .acm.sno.redhatlabs.dev
+    acl is_mce req.ssl_sni -m end .mce.sno.redhatlabs.dev
+    use_backend api.acm.sno.redhatlabs.dev if is_acm
+    use_backend api.mce.sno.redhatlabs.dev if is_mce
+    default_backend api.acm.sno.redhatlabs.dev
+    option tcplog
+
+backend api.acm.sno.redhatlabs.dev
+    balance source
+    mode tcp
+    server dl380-02 192.168.130.10:6443 check
+
+backend api.mce.sno.redhatlabs.dev
+    balance source
+    mode tcp
+    server master-0 192.168.130.11:6443 check
+    server master-1 192.168.130.12:6443 check
+    server master-3 192.168.130.13:6443 check
+
+frontend ingress-http
+    bind *:80
+    mode http
+    acl is_acm hdr_dom(host) -i acm.sno.redhatlabs.dev
+    acl is_mce hdr_dom(host) -i mce.sno.redhatlabs.dev
+    use_backend apps.acm.sno.redhatlabs.dev if is_acm
+    use_backend apps.mce.sno.redhatlabs.dev if is_mce
+    default_backend apps.acm.sno.redhatlabs.dev
+    option tcplog
+
+backend apps.acm.sno.redhatlabs.dev
+    balance source
+    mode http
+    server dl380-02 192.168.130.10:80 check
+
+backend apps.mce.sno.redhatlabs.dev
+    balance source
+    mode http
+    server master-0 192.168.130.11:80 check
+    server master-1 192.168.130.12:80 check
+    server master-2 192.168.130.13:80 check
+
+frontend ingress-https
+    bind *:443
+    mode tcp
+    tcp-request inspect-delay 5s
+    tcp-request content accept if { req_ssl_hello_type 1 }
+    acl is_acm req_ssl_sni -m end .acm.sno.redhatlabs.dev
+    acl is_mce req_ssl_sni -m end .mce.sno.redhatlabs.dev
+    acl is_hcp1 req_ssl_sni -m end .hcp-1.sno.redhatlabs.dev
+    acl is_hcp2 req_ssl_sni -m end .hcp-2.sno.redhatlabs.dev
+    use_backend ssl.apps.acm.sno.redhatlabs.dev if is_acm
+    use_backend ssl.apps.mce.sno.redhatlabs.dev if is_mce
+    use_backend ssl.apps.hcp-1.sno.redhatlabs.dev if is_hcp1
+    use_backend ssl.apps.hcp-2.sno.redhatlabs.dev if is_hcp2
+    default_backend ssl.apps.acm.sno.redhatlabs.dev
+    option tcplog
+
+backend ssl.apps.acm.sno.redhatlabs.dev
+    balance source
+    mode tcp
+    server dl380-02 192.168.130.10:443 check
+
+backend ssl.apps.mce.sno.redhatlabs.dev
+    balance source
+    mode tcp
+    server master-0 192.168.130.11:443 check
+    server master-1 192.168.130.12:443 check
+    server master-2 192.168.130.13:443 check
+
+backend ssl.apps.hcp-1.sno.redhatlabs.dev
+    balance source
+    mode tcp
+    server master-0 192.168.130.14:443 check
+
+backend ssl.apps.hcp-2.sno.redhatlabs.dev
+    balance source
+    mode tcp
+    server master-0 192.168.130.17:443 check
+```
+
+## DNS on Client Host
+
+Since we have no DNS - we point our Clients `/etc/hosts` to the Base Host and let HAProxy do the rest.
+
+```bash
+##### SNO ACM LAB
+172.23.3.24     api.acm.sno.redhatlabs.dev
+172.23.3.24     oauth-openshift.apps.acm.sno.redhatlabs.dev
+172.23.3.24     console-openshift-console.apps.acm.sno.redhatlabs.dev
+172.23.3.24     grafana-openshift-monitoring.apps.acm.sno.redhatlabs.dev
+172.23.3.24     thanos-querier-openshift-monitoring.apps.acm.sno.redhatlabs.dev global-policy-server-openshift-gitops.apps.acm.sno.redhatlabs.dev vault.apps.acm.sno.redhatlabs.dev hcp-cli-download-multicluster-engine.apps.acm.sno.redhatlabs.dev
+##### SNO MCE LAB
+172.23.3.24     api.mce.sno.redhatlabs.dev
+172.23.3.24     oauth-openshift.apps.mce.sno.redhatlabs.dev
+172.23.3.24     console-openshift-console.apps.mce.sno.redhatlabs.dev
+172.23.3.24     grafana-openshift-monitoring.apps.mce.sno.redhatlabs.dev
+172.23.3.24     thanos-querier-openshift-monitoring.apps.mce.sno.redhatlabs.dev hcp-cli-download-multicluster-engine.apps.mce.sno.redhatlabs.dev assisted-image-service-multicluster-engine.apps.mce.sno.redhatlabs.dev
+##### hcp
+172.23.3.24     console-openshift-console.apps.hcp-1.sno.redhatlabs.dev
+172.23.3.24     oauth-hosted-hcp-1.apps.mce.sno.redhatlabs.dev
+172.23.3.24     console-openshift-console.apps.hcp-2.sno.redhatlabs.dev
+172.23.3.24     oauth-hosted-hcp-2.apps.mce.sno.redhatlabs.dev
+```
