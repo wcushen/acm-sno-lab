@@ -40,3 +40,7 @@ InfraEnvs - MCE & BareMetal
 GitOps Clusters
 
 ![gitops-clusters.png](images/gitops-clusters.png)
+
+Policy-as-Code
+
+![policy-as-code.png](images/policy-as-code.png)
