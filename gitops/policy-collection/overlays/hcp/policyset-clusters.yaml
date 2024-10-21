@@ -1,0 +1,22 @@
+---
+apiVersion: policy.open-cluster-management.io/v1beta1
+kind: PolicySet
+metadata:
+  name: hcp-clusters
+spec:
+  description: "Policies for cluster configuration"
+  policies:
+    - hcp-admin-rbac
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-hcp-clusters
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-spokes-openshift
+subjects:
+  - apiGroup: policy.open-cluster-management.io
+    kind: PolicySet
+    name: hcp-clusters
