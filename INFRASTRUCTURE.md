@@ -347,7 +347,13 @@ virsh edit acm
 
 ## ArgoCD / ACM Bootstrap
 
-Once ACM Hub deployed, bootstrap ArgoCD and ACM.
+Once ACM Hub deployed, install an admin user.
+
+```bash
+./users.sh
+```
+
+Bootstrap ArgoCD and ACM.
 
 ```bash
 ./install.sh -d

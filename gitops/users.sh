@@ -79,7 +79,6 @@ EOF
 }
 
 all() {
-    echo "🌴 BASE_DOMAIN set to $BASE_DOMAIN"
     echo "🌴 NO_ADMINS set to $NO_ADMINS"
 
     create_htpasswd
@@ -88,10 +87,7 @@ all() {
 }
 
 # Check for EnvVars
-[ -z "$BASE_DOMAIN" ] && echo "🕱 Error: must supply BASE_DOMAIN in env or cli" && exit 1
 [ -z "$ADMIN_PASSWORD" ] && read -s -p "ADMIN_PASSWORD: " ADMIN_PASSWORD
-
-CLUSTER_DOMAIN=apps.${BASE_DOMAIN}
 
 all
 
