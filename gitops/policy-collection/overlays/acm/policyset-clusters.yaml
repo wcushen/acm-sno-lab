@@ -9,6 +9,7 @@ spec:
     - acm-addon-ns
     - acm-addon-hypershift
     - acm-mce-hcp-autoimport
+    - acm-addon-placements
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding

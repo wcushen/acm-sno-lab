@@ -3,3 +3,4 @@ resources:
   - policy-addon-ns.yaml
   - policy-hypershift-addon.yaml
   - policy-mce-hcp-autoimport.yaml
+  - policy-addon-placements.yaml
