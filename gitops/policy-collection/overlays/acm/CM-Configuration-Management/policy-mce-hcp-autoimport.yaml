@@ -29,6 +29,7 @@ spec:
                 kind: ConfigMap
                 metadata:
                   name: discovery-config
+                  namespace: open-cluster-management-global-set
                 data:
                   rosa-filter: ""
           remediationAction: enforce
