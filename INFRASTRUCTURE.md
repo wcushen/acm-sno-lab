@@ -6,6 +6,21 @@ We use libvirt/kvm and sushy tools to emulate the Bare Metal Controller.
 
 A lot of these instructions could be automated. But its just a lab so 🤷.
 
+- [Base Host setup](#Base-Host-setup)
+- [Networking Setup on Base Host](#Networking-Setup-on-Base-Host)
+- [DNS Base Host](#DNS-Base-Host)
+- [ACM Hub Install](#ACM-Hub-Install)
+- [ArgoCD / ACM Bootstrap](#ArgoCD-/-ACM-Bootstrap)
+- [ACM app-of-apps](#ACM-app-of-apps)
+- [Vault Setup](#Vault-Setup)
+- [Deploy Cluster MCE Secret](#Deploy-Cluster-MCE-Secret)
+- [Deploy MCE 3-Node compact cluster](#Deploy-MCE-3-Node-compact-cluster)
+- [Deploy MCE app-of-apps](#Deploy-MCE-app-of-apps)
+- [Deploy HCP Spoke Secrets](#Deploy-HCP-Spoke-Secrets)
+- [Deploy HCP Spoke worker nodes](#Deploy-HCP-Spoke-worker-nodes)
+- [HAProxy on Base Host](#HAProxy-on-Base-Host)
+- [Adding and Deleting HCP Clusters](#Adding-and-Deleting-HCP-Clusters)
+
 ## Base Host setup
 
 Install libvirt and tools as root.
