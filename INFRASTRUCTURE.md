@@ -546,7 +546,7 @@ wget -O discovery.iso 'https://assisted-image-service-multicluster-engine.apps.a
 Copy for libvirt.
 
 ```bash
-sudo cp discovery.iso /var/lib/libvirt/images/mce-rhcos-live.x86_64.iso
+sudo cp discovery.iso /var/lib/libvirt/images/secrhcos-live.x86_64.iso
 sudo chown qemu:qemu /var/lib/libvirt/images/mce-rhcos-live.x86_64.iso
 sudo restorecon -rv /var/lib/libvirt/images/mce-rhcos-live.x86_64.iso
 ```
@@ -798,27 +798,7 @@ We have x2 HCP Spoke clusters defined in `managed-clusters` [hcp-1](gitops/appli
 
 The HCP Spokes should deploy from the MCE cluster.
 
-Once the HCP spokes have deployed - for these to auto-join the ACM Hub [create a secret with the kubeconfig](https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.10/html-single/clusters/index#importing-clusters-auto-import-secret) or similar - this secret gets consumed so we cannot easily automate it.
-
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: auto-import-secret
-  namespace: mce-hcp-1
-stringData:
-  autoImportRetry: "5"
-  kubeconfig: <kubeconfig>
-#
-apiVersion: v1
-kind: Secret
-metadata:
-  name: auto-import-secret
-  namespace: mce-hcp-2
-stringData:
-  autoImportRetry: "5"
-  kubeconfig: <kubeconfig>
-```
+Once the HCP spokes have deployed - for these to auto-join the ACM Hub we have [this auto-import Policy](gitops/policy-collection/overlays/acm/CM-Configuration-Management/policy-mce-hcp-autoimport.yaml) which is in the product docs. This can take some time to import into ACM - you can check to `oc get klusterlets.operator.open-cluster-management.io -A` in MCE cluster or `oc get discoveredcluster -A` in ACM cluster.
 
 ## HAProxy on Base Host
 
