@@ -2,9 +2,9 @@
 
 Bare Metal - ACM > MCE > HCP Spokes
 
-    ACM - Hub cluster
-    MCE - Managed Hosting cluster
-    hcp-1, hcp-2 - Managed Spoke HCP clusters
+    ACM - SNO Hub cluster
+    MCE - Managed 3-Node Compact Hosting cluster
+    hcp-{1..4} - Managed Spoke HCP clusters
 
 Component View
 
