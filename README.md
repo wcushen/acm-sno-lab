@@ -6,6 +6,8 @@ Bare Metal - ACM > MCE > HCP Spokes
     MCE - Managed 3-Node Compact Hosting cluster
     hcp-{1..4} - Managed Spoke HCP clusters
 
+See the [INFRASTRUCTURE](INFRASTRUCTURE.md) page for setup details.
+
 Component View
 
 ![acm-mce.png](images/acm-mce.png)
