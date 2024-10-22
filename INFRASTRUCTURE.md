@@ -987,3 +987,42 @@ Since we only have simple dnsmasq in the lab - we point our laptop Clients `/etc
 172.23.3.24     console-openshift-console.apps.hcp-2.sno.redhatlabs.dev
 172.23.3.24     oauth-hosted-hcp-2.apps.mce.sno.redhatlabs.dev
 ```
+
+## Adding and Deleting HCP Clusters
+
+### ADD cluster
+
+To ADD a new hcp cluster.
+
+- copy+paste new gitops folder [gitops/applications/managed-clusters/hcp-{1..4}](gitops/applications/managed-clusters)
+- create new appset [gitops/applications/managed-clusters/applications/acm/hcp-{1..4}.yaml](gitops/applications/managed-clusters/applications/acm)
+- check this in to git + sync argocd
+
+On Base Host.
+
+- update dnsmasq hosts - `vi etc/sno.redhatlabs.dev.dnsmasq.hosts`
+- restart NetworkManager - `systemctl restart NetworkManager`
+- update haproxy config - `vi /etc/haproxy/haproxy.cfg`
+- restart haproxy - `systemctl restart haproxy`
+
+### DELETE cluster
+
+This could be streamlined some more - but opting to not prune in ArgoCD for now (safety).
+
+- comment out cluster appset [gitops/applications/managed-clusters/applications/acm/hcp-{1..4}.yaml](gitops/applications/managed-clusters/applications/acm)
+- delete hcp cluster from MCE UI
+- delete hcp ArgoCD AppSet (not set to prune ATM)
+- detach hcp cluster from ACM
+- update worker to reboot from cdrom
+
+```bash
+virsh edit hcp-3
+# change this:
+# <boot dev='fd'/>
+# to this:
+# <boot dev='cdrom'/>
+virsh destroy hcp-3
+virsh start hcp-3
+```
+
+Host should become `Available` again in Inventory.
