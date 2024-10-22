@@ -1004,7 +1004,7 @@ On Base Host.
 
 This could be streamlined some more - but opting to not prune in ArgoCD for now (safety).
 
-- comment out cluster appset [gitops/applications/managed-clusters/applications/acm/hcp-{1..4}.yaml](gitops/applications/managed-clusters/applications/acm)
+- rename cluster appset [gitops/applications/managed-clusters/applications/acm/hcp-{1..4}.yaml](gitops/applications/managed-clusters/applications/acm) to somthing like this - `hcp-1.yaml.undeploy`
 - delete hcp cluster from MCE UI
 - delete hcp ArgoCD AppSet (not set to prune ATM)
 - detach hcp cluster from ACM
