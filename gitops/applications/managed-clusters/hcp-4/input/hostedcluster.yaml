@@ -1,0 +1,59 @@
+---
+apiVersion: hypershift.openshift.io/v1beta1
+kind: HostedCluster
+metadata:
+  name: hcp-4
+  namespace: hosted
+  labels:
+spec:
+  configuration:
+    oauth:
+      identityProviders:
+      - name: htpasswd_provider
+        type: HTPasswd
+        htpasswd:
+          fileData:
+            name: htpasswdidp-secret-hcp-4
+  release:
+    image: quay.io/openshift-release-dev/ocp-release:4.16.17-multi
+  pullSecret:
+    name: pull-secret-hcp-4
+  sshKey:
+    name: ssh-key-hcp-4
+  networking:
+    clusterNetwork:
+      - cidr: 10.128.0.0/14
+    serviceNetwork:
+      - cidr: 172.31.0.0/16
+    networkType: OVNKubernetes
+  controllerAvailabilityPolicy: SingleReplica
+  infrastructureAvailabilityPolicy: SingleReplica
+  platform:
+    type: Agent
+    agent:
+      agentNamespace: hardware-inventory
+  infraID: bare-metal
+  dns:
+    baseDomain: 'sno.redhatlabs.dev'
+  services:
+  - service: APIServer
+    servicePublishingStrategy:
+      nodePort:
+        address: 192.168.130.11
+      type: NodePort
+  - service: OAuthServer
+    servicePublishingStrategy:
+      type: Route
+  - service: OIDC
+    servicePublishingStrategy:
+      type: Route
+  - service: Konnectivity
+    servicePublishingStrategy:
+      nodePort:
+        address: 192.168.130.11
+      type: NodePort
+  - service: Ignition
+    servicePublishingStrategy:
+      nodePort:
+        address: 192.168.130.11
+      type: NodePort
