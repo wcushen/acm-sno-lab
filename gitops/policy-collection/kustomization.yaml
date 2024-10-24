@@ -1,3 +1,4 @@
 resources:
  - overlays/acm
+ - overlays/mce
  - overlays/hcp

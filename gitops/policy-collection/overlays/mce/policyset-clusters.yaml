@@ -1,0 +1,22 @@
+---
+apiVersion: policy.open-cluster-management.io/v1beta1
+kind: PolicySet
+metadata:
+  name: mce-clusters
+spec:
+  description: "Policies for cluster configuration"
+  policies:
+    - mce-addon-hypershift
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-mce-clusters
+placementRef:
+  apiGroup: cluster.open-cluster-management.io
+  kind: Placement
+  name: placement-mce
+subjects:
+  - apiGroup: policy.open-cluster-management.io
+    kind: PolicySet
+    name: mce-clusters
