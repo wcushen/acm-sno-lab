@@ -38,9 +38,7 @@ spec:
   services:
   - service: APIServer
     servicePublishingStrategy:
-      nodePort:
-        address: 192.168.130.11
-      type: NodePort
+      type: LoadBalancer
   - service: OAuthServer
     servicePublishingStrategy:
       type: Route
