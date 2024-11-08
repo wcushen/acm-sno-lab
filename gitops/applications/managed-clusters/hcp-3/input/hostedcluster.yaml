@@ -36,7 +36,6 @@ spec:
   dns:
     baseDomain: 'sno.redhatlabs.dev'
   services:
-  services:
   - service: APIServer
     servicePublishingStrategy:
       type: LoadBalancer
