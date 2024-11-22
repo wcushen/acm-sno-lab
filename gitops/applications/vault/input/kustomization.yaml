@@ -11,6 +11,6 @@ helmCharts:
       vault:
         server:
           route:
-            host: vault.apps.acm.sno.redhatlabs.dev
+            host: vault.apps.cluster-qh7p5.qh7p5.sandbox1157.opentlc.com
           extraEnvironmentVars:
-            VAULT_TLS_SERVER_NAME: vault.apps.apps.acm.sno.redhatlabs.dev
+            VAULT_TLS_SERVER_NAME: vault.apps.cluster-qh7p5.qh7p5.sandbox1157.opentlc.com
