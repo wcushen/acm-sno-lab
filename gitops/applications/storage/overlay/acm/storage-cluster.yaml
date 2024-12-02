@@ -4,48 +4,70 @@ metadata:
   name: ocs-storagecluster
   namespace: openshift-storage
 spec:
-  arbiter: {}
-  encryption:
-    kms: {}
-  externalStorage: {}
-  flexibleScaling: true
-  resources:
-    mds:
-      limits:
-        cpu: "3"
-        memory: "8Gi"
-      requests:
-        cpu: "3"
-        memory: "8Gi"
-  monDataDirHostPath: /var/lib/rook
-  managedResources:
-    cephBlockPools:
-      reconcileStrategy: manage   # <-- Default value is manage
-    cephConfig: {}
-    cephFilesystems: {}
-    cephObjectStoreUsers: {}
-    cephObjectStores: {}
-  multiCloudGateway:
-    reconcileStrategy: manage   # <-- Default value is manage
   storageDeviceSets:
-    - count: {{ num_odf_disk }}  # <-- Modify count to desired value. For each set of 3 disks increment the count by 1.
+    - config: {}
+      count: 1
       dataPVCTemplate:
+        metadata: {}
         spec:
           accessModes:
             - ReadWriteOnce
           resources:
             requests:
-              storage: "100Mi"
+              storage: '1'
           storageClassName: localblock
           volumeMode: Block
-      name: ocs-deviceset
+        status: {}
+      name: ocs-deviceset-localblock
       placement: {}
-      portable: false
+      preparePlacement: {}
       replica: 3
-      resources:
-        limits:
-          cpu: "2"
-          memory: "5Gi"
-        requests:
-          cpu: "2"
-          memory: "5Gi"
+      resources: {}
+  encryption:
+    clusterWide: true
+    enable: true
+    keyRotation:
+      schedule: '@weekly'
+    kms: {}
+  mirroring: {}
+  monDataDirHostPath: /var/lib/rook
+  managedResources:
+    cephObjectStoreUsers: {}
+    cephCluster: {}
+    cephBlockPools:
+      defaultStorageClass: true
+    cephNonResilientPools:
+      count: 1
+      resources: {}
+      volumeClaimTemplate:
+        metadata: {}
+        spec:
+          resources: {}
+        status: {}
+    cephObjectStores: {}
+    cephFilesystems:
+      dataPoolSpec:
+        application: ''
+        erasureCoded:
+          codingChunks: 0
+          dataChunks: 0
+        mirroring: {}
+        quotas: {}
+        replicated:
+          size: 0
+        statusCheck:
+          mirror: {}
+    cephRBDMirror:
+      daemonCount: 1
+    cephToolbox: {}
+    cephDashboard: {}
+    cephConfig: {}
+  arbiter: {}
+  network:
+    connections:
+      encryption:
+        enabled: true
+    multiClusterService: {}
+  nodeTopologies: {}
+  externalStorage: {}
+  resourceProfile: lean
