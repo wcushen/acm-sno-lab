@@ -4,8 +4,6 @@ kind: Subscription
 metadata:
   name: odf-operator
   namespace: openshift-storage
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
 spec:
   channel: stable-4.17
   installPlanApproval: Automatic

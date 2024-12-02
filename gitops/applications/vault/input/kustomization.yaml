@@ -11,6 +11,6 @@ helmCharts:
       vault:
         server:
           route:
-            host: vault.apps.cluster-68hkt.68hkt.sandbox1604.opentlc.com
+            host: vault.apps.lab-demo.sandbox723.opentlc.com
           extraEnvironmentVars:
-            VAULT_TLS_SERVER_NAME: vault.apps.cluster-68hkt.68hkt.sandbox1604.opentlc.com
+            VAULT_TLS_SERVER_NAME: vault.apps.lab-demo.sandbox723.opentlc.com
