@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/wcushen/acm-sno-lab.git
-    path: gitops/applications/quay
+    path: gitops/applications/quay/overlay/acm
     targetRevision: main
   syncPolicy:
     automated:
