@@ -1,0 +1,5 @@
+---
+resources:
+  - cluster-issuer.yaml
+  - api-certficate.yaml
+  - ingress-certificate.yaml

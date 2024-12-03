@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  annotations:
+    ran.openshift.io/ztp-deploy-wave: "75"
+  name: wildcard-certificate
+  namespace: openshift-ingress
+spec:
+  secretName: wildcard-cert
+  commonName: '*.apps.{{ (lookup "config.openshift.io/v1" "DNS" "" "cluster").spec.baseDomain }}'
+  issuerRef:
+    name: venafi-issuer
+    kind: ClusterIssuer

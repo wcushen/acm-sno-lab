@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  annotations:
+    ran.openshift.io/ztp-deploy-wave: "75"
+  name: api-certificate
+  namespace: openshift-config
+spec:
+  secretName: api-cert
+  commonName: 'api.{{ (lookup "config.openshift.io/v1" "DNS" "" "cluster").spec.baseDomain }}'
+  issuerRef:
+    name: venafi-issuer
+    kind: ClusterIssuer

@@ -1,0 +1,5 @@
+---
+resources:
+  - ../../base
+  - quayregistry.yaml
+  - init-config-bundle-secret.yaml
