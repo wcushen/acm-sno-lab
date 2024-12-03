@@ -12,21 +12,21 @@ metadata:
 #    unsupported.agent-install.openshift.io/assisted-image-service-skip-verify-tls: true
 spec:
   databaseStorage:
-    storageClassName: lvms-vgsno
+    storageClassName: ocs-storagecluster-ceph-rbd
     accessModes:
       - ReadWriteOnce
     resources:
       requests:
-        storage: 2Gi
+        storage: 10Gi
   filesystemStorage:
-    storageClassName: lvms-vgsno
+    storageClassName: ocs-storagecluster-ceph-rbd
     accessModes:
       - ReadWriteOnce
     resources:
       requests:
-        storage: 50Gi
+        storage: 20Gi
   imageStorage:
-    storageClassName: lvms-vgsno
+    storageClassName: ocs-storagecluster-ceph-rbd
     accessModes:
       - ReadWriteOnce
     resources:
