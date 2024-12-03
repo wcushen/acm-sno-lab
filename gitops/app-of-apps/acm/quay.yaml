@@ -22,6 +22,9 @@ spec:
         argocd.argoproj.io/compare-options: IgnoreExtraneous
     spec:
       project: default
+      destination:
+        namespace: openshift-gitops
+        server: 'https://kubernetes.default.svc'
       source:
         repoURL: https://github.com/wcushen/acm-sno-lab.git
         path: gitops/applications/quay
