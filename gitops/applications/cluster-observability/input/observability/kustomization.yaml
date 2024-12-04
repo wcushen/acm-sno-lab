@@ -1,0 +1,5 @@
+---
+resources:
+  - namespace.yaml
+  - s3-secret.yaml
+  - multicluster-observability.yaml
