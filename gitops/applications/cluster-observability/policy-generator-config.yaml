@@ -1,0 +1,30 @@
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PolicyGenerator
+metadata:
+  name: cluster-observability
+placementBindingDefaults:
+  name: cluster-observability
+policyDefaults:
+  placement:
+    placementName: placement-hub-openshift
+  categories:
+    - CM Configuration Management
+  complianceType: "musthave"
+  controls:
+    - CM-2 Baseline Configuration
+  consolidateManifests: false
+  copyPolicyMetadata: false
+  disabled: false
+  namespace: open-cluster-management-global-set
+  pruneObjectBehavior: "DeleteAll"
+  remediationAction: enforce
+  severity: medium
+  standards:
+    - NIST SP 800-53
+  policyAnnotations: {"argocd.argoproj.io/compare-options": "IgnoreExtraneous",
+                      "avp.kubernetes.io/path": "kv/data/open-cluster-management-global-set/cluster-observability"}
+policies:
+  - name: cluster-observability
+    manifests:
+      - path: input/

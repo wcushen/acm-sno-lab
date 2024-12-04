@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: quay-mirror-config
+  namespace: open-cluster-management
+  labels:
+    app: assisted-service
+data:
+  LOG_LEVEL: "debug"
+  ca-bundle.crt: |
+    -----BEGIN CERTIFICATE-----
+    ! Put you CA for your mirror registry here !
+    -----END CERTIFICATE-----
+
+  registries.conf: |
+    unqualified-search-registries = ["registry.redhat.io", "registry.access.redhat.com", "docker.io"]
+
+    [[registry]]
+      prefix = ""
+      location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
+      mirror-by-digest-only = false
+      [[registry.mirror]]
+        location = "artifactory.srv.customer.com.au/openshift-release-dev/ocp-v4.0-art-dev"

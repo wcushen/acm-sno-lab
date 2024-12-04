@@ -7,10 +7,9 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "2"
-#  annotations:
-#    unsupported.agent-install.openshift.io/assisted-service-configmap: my-assisted-service-config
-#    unsupported.agent-install.openshift.io/assisted-image-service-skip-verify-tls: true
 spec:
+  mirrorRegistryRef:
+    name: quay-mirror-config
   databaseStorage:
     storageClassName: ocs-storagecluster-ceph-rbd
     accessModes:
