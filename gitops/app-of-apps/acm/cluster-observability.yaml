@@ -29,7 +29,7 @@ spec:
         repoURL: https://github.com/wcushen/acm-sno-lab.git
         path: gitops/applications/cluster-observability
         plugin:
-          name: argocd-novault-plugin-kustomize
+          name: argocd-vault-plugin-kustomize
         targetRevision: main
       syncPolicy:
         automated:

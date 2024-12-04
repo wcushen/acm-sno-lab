@@ -1,0 +1,5 @@
+---
+resources:
+  - htpass-secret.yaml
+  - oauth-htpasswd.yaml
+  - cluster-rolebinding.yaml
