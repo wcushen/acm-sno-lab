@@ -1,11 +1,11 @@
----
 apiVersion: hypershift.openshift.io/v1beta1
 kind: HostedCluster
 metadata:
+  creationTimestamp: null
   name: hcp-1
   namespace: hosted
-  labels:
 spec:
+  autoscaling: {}
   configuration:
     oauth:
       identityProviders:
@@ -14,46 +14,75 @@ spec:
         htpasswd:
           fileData:
             name: htpasswdidp-secret-hcp-1
-  release:
-    image: quay.io/openshift-release-dev/ocp-release:4.16.17-multi
-  pullSecret:
-    name: pull-secret-hcp-1
-  sshKey:
-    name: ssh-key-hcp-1
+  controllerAvailabilityPolicy: HighlyAvailable
+  dns:
+    baseDomain: sandbox723.opentlc.com
+    privateZoneID: Z03633992AFX2AS9R1II6
+    publicZoneID: Z3E0TLOWFZ02WF
+  etcd:
+    managed:
+      storage:
+        persistentVolume:
+          size: 8Gi
+          storageClassName: gp3-csi
+        type: PersistentVolume
+    managementType: Managed
+  fips: false
+  infraID: hcp-1
+  issuerURL: https://aws-oidc-bucket.s3.ap-southeast-2.amazonaws.com/hcp-1
   networking:
     clusterNetwork:
-      - cidr: 10.128.0.0/14
-    serviceNetwork:
-      - cidr: 172.31.0.0/16
+    - cidr: 10.132.0.0/14
+    machineNetwork:
+    - cidr: 10.0.0.0/16
     networkType: OVNKubernetes
-  controllerAvailabilityPolicy: SingleReplica
-  infrastructureAvailabilityPolicy: SingleReplica
+    serviceNetwork:
+    - cidr: 172.31.0.0/16
+  olmCatalogPlacement: management
   platform:
-    type: Agent
-    agent:
-      agentNamespace: hardware-inventory
-  infraID: bare-metal
-  dns:
-    baseDomain: 'sno.redhatlabs.dev'
+    aws:
+      cloudProviderConfig:
+        subnet:
+          id: subnet-03ec8d42168d2b7da
+        vpc: vpc-0240136ceaaee1b61
+        zone: ap-southeast-2a
+      endpointAccess: Public
+      multiArch: true
+      region: ap-southeast-2
+      rolesRef:
+        controlPlaneOperatorARN: arn:aws:iam::899622598314:role/hcp-1-control-plane-operator
+        imageRegistryARN: arn:aws:iam::899622598314:role/hcp-1-openshift-image-registry
+        ingressARN: arn:aws:iam::899622598314:role/hcp-1-openshift-ingress
+        kubeCloudControllerARN: arn:aws:iam::899622598314:role/hcp-1-cloud-controller
+        networkARN: arn:aws:iam::899622598314:role/hcp-1-cloud-network-config-controller
+        nodePoolManagementARN: arn:aws:iam::899622598314:role/hcp-1-node-pool
+        storageARN: arn:aws:iam::899622598314:role/hcp-1-aws-ebs-csi-driver-controller
+    type: AWS
+  pullSecret:
+    name: pull-secret-hcp-1
+  release:
+    image: quay.io/openshift-release-dev/ocp-release:4.18.0-rc.0-multi
+  secretEncryption:
+    aescbc:
+      activeKey:
+        name: hcp-1-etcd-encryption-key
+    type: aescbc
   services:
   - service: APIServer
     servicePublishingStrategy:
-      nodePort:
-        address: 192.168.130.11
-      type: NodePort
-  - service: OAuthServer
-    servicePublishingStrategy:
-      type: Route
-  - service: OIDC
+      type: LoadBalancer
+  - service: Ignition
     servicePublishingStrategy:
       type: Route
   - service: Konnectivity
     servicePublishingStrategy:
-      nodePort:
-        address: 192.168.130.11
-      type: NodePort
-  - service: Ignition
+      type: Route
+  - service: OAuthServer
     servicePublishingStrategy:
-      nodePort:
-        address: 192.168.130.11
-      type: NodePort
+      type: Route
+  sshKey:
+    name: hcp-1-ssh-key
+status:
+  controlPlaneEndpoint:
+    host: ""
+    port: 0

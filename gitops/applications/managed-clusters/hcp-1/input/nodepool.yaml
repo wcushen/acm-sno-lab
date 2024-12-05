@@ -1,19 +1,28 @@
----
 apiVersion: hypershift.openshift.io/v1beta1
 kind: NodePool
 metadata:
-  name: worker-hcp-1
+  name: hcp-1-ap-southeast-2a
   namespace: hosted
 spec:
+  arch: amd64
   clusterName: hcp-1
-  replicas: 1
   management:
     autoRepair: false
-    upgradeType: InPlace
+    upgradeType: Replace
+  nodeDrainTimeout: 0s
+  nodeVolumeDetachTimeout: 0s
   platform:
-    type: Agent
-    agent:
-      agentLabelSelector:
-        matchLabels: {}
+    aws:
+      instanceProfile: hcp-1-worker
+      instanceType: m5.large
+      rootVolume:
+        size: 120
+        type: gp3
+      subnet:
+        id: subnet-03ec8d42168d2b7da
+    type: AWS
   release:
-    image: quay.io/openshift-release-dev/ocp-release:4.16.17-multi
+    image: quay.io/openshift-release-dev/ocp-release:4.18.0-rc.0-multi
+  replicas: 3
+status:
+  replicas: 0
