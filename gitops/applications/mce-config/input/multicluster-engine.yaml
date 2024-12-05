@@ -2,7 +2,7 @@
 apiVersion: multicluster.openshift.io/v1
 kind: MultiClusterEngine
 metadata:
-  name: engine
+  name: multicluster-engine
   namespace: multicluster-engine
 spec:
   availabilityConfig: Basic
