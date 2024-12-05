@@ -7,7 +7,7 @@ placementBindingDefaults:
   name: hardware-inventory
 policyDefaults:
   placement:
-    placementName: placement-mce
+    placementName: placement-hub
   categories:
     - CM Configuration Management
   complianceType: "musthave"

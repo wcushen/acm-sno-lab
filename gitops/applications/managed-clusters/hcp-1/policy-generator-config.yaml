@@ -7,7 +7,7 @@ placementBindingDefaults:
   name: hcp-1
 policyDefaults:
   placement:
-    placementName: placement-mce
+    placementName: placement-hub-openshift
   categories:
     - CM Configuration Management
   complianceType: "musthave"
