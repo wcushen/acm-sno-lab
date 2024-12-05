@@ -1,0 +1,11 @@
+apiVersion: v1
+data:
+  key: cp5I3dDEYsMzklfn462oR4D0vn43w0ou2zBNx/2ic4o=
+kind: Secret
+metadata:
+  creationTimestamp: null
+  labels:
+    hypershift.openshift.io/safe-to-delete-with-cluster: "true"
+  name: hcp-1-etcd-encryption-key
+  namespace: hosted
+type: Opaque

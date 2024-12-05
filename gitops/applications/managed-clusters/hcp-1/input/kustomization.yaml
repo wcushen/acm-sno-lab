@@ -6,3 +6,4 @@ resources:
   - hostedcluster.yaml
   - nodepool.yaml
   - htpasswd-secret.yaml
+  - etcd-encryption-key.yaml
