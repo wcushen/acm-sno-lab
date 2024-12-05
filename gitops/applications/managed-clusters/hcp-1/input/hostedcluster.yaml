@@ -61,7 +61,7 @@ spec:
   pullSecret:
     name: pull-secret-hcp-1
   release:
-    image: quay.io/openshift-release-dev/ocp-release:	4.17.0-multi
+    image: quay.io/openshift-release-dev/ocp-release:4.17.0-multi
   secretEncryption:
     aescbc:
       activeKey:
