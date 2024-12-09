@@ -1,0 +1,41 @@
+apiVersion: v1
+baseDomain: example.com
+proxy:
+  httpProxy: http://w.com.au:8080/
+  httpsProxy: http://w.com.au:8080/
+  noProxy: w.com.au,10.100.12.0/24
+compute:
+- architecture: amd64
+  hyperthreading: Enabled
+  name: worker
+  replicas: 0
+controlPlane:
+  architecture: amd64
+  hyperthreading: Enabled
+  name: master
+  replicas: 3
+metadata:
+  name: ocpmirror
+networking:
+  clusterNetwork:
+  - cidr: 172.16.0.0/14
+    hostPrefix: 23
+  machineNetwork:
+  - cidr: 192.168.10.0/24
+  networkType: OVNKubernetes
+  serviceNetwork:
+  - 172.20.0.0/16
+platform:
+  baremetal:
+    apiVIPs:
+    - 192.168.10.101
+    ingressVIPs:
+    - 192.168.10.102
+fips: false
+pullSecret: '{"auths":{"bastion.example.com:8443":{"auth":"aW5pdDo3SEZkcTM4NUE5RUcwbmdWV280Y0tlRHR4UnpwNjIxTg==","email":"email@example.com"}}}'
+sshKey: 'ssh-ed25519 .... root@bastion.example.com'
+additionalTrustBundle: |
+  -----BEGIN CERTIFICATE-----
+  ...
+  ...
+  -----END CERTIFICATE-----
