@@ -11,8 +11,6 @@ mkdir -p cluster/cluster-manifests
 # needed deps
 sudo dnf install /usr/bin/nmstatectl -y
 #
-cp agent-cluster-install.yaml cluster/cluster-manifests/
-#
 cp install-config.yaml agent-config.yaml cluster/
 #
 ./openshift-install --dir cluster agent create image
