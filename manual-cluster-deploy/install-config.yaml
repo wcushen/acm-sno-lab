@@ -34,8 +34,3 @@ platform:
 fips: false
 pullSecret: '{"auths":{"bastion.example.com:8443":{"auth":"aW5pdDo3SEZkcTM4NUE5RUcwbmdWV280Y0tlRHR4UnpwNjIxTg==","email":"email@example.com"}}}'
 sshKey: 'ssh-ed25519 .... root@bastion.example.com'
-additionalTrustBundle: |
-  -----BEGIN CERTIFICATE-----
-  ...
-  ...
-  -----END CERTIFICATE-----

@@ -1,0 +1,9 @@
+apiVersion: extensions.hive.openshift.io/v1beta1
+kind: AgentClusterInstall
+metadata:
+  creationTimestamp: null
+  name: ocpmirror
+spec:
+  diskEncryption:
+    enableOn: all 
+    mode: tpmv2

@@ -7,9 +7,11 @@ wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/${OPENSHIFT_VERSI
 tar xzvf openshift-install-linux.tar.gz
 chmod 755 openshift-install
 #
-mkdir cluster
+mkdir -p cluster/cluster-manifests
 # needed deps
 sudo dnf install /usr/bin/nmstatectl -y
+#
+cp agent-cluster-install.yaml cluster/cluster-manifests/
 #
 cp install-config.yaml agent-config.yaml cluster/
 #
