@@ -1,2 +1,2 @@
 gitops/secrets/age-key-a-team.txt
-**/secret.yaml
+gitops/secrets/age-key-admin.txt
