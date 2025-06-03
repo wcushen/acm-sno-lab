@@ -2,24 +2,24 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: quay
+  name: metallb
   namespace: openshift-gitops
 spec:
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:
     metadata:
-      name: quay
+      name: metallb
       annotations:
         argocd.argoproj.io/compare-options: IgnoreExtraneous
     spec:
       project: default
       destination:
-        namespace: openshift-gitops
         server: 'https://kubernetes.default.svc'
+        namespace: openshift-gitops
       source:
         repoURL: https://github.com/wcushen/acm-sno-lab.git
-        path: gitops/applications/quay
+        path: gitops/applications/metallb/overlay/mce
         plugin:
           name: argocd-novault-plugin-kustomize
         targetRevision: feature/sans-acm
@@ -28,4 +28,4 @@ spec:
           prune: false
           selfHeal: true
         syncOptions:
-          - CreateNamespace=false
+          - Validate=true

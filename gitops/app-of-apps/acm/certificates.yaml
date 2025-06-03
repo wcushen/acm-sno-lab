@@ -12,7 +12,7 @@ spec:
   source:
     repoURL: https://github.com/wcushen/acm-sno-lab.git
     path: gitops/applications/certificates
-    targetRevision: main
+    targetRevision: feature/sans-acm
   syncPolicy:
     automated:
       prune: true
