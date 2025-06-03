@@ -5,6 +5,8 @@ metadata:
   name: quay
   namespace: openshift-gitops
 spec:
+  generators:
+  - clusters: {} 
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:
