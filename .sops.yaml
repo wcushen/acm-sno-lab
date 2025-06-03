@@ -1,0 +1,5 @@
+creation_rules:
+  - path_regex: .*\.enc$
+    age: 'age1k0p7ppfv84zlpemvpya269upa5pvmxwvw54a0frud4acd2szfpwslttgxz'
+  - path_regex: .*\.yaml$
+    age: 'age1k0p7ppfv84zlpemvpya269upa5pvmxwvw54a0frud4acd2szfpwslttgxz'

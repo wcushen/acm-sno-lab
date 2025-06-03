@@ -1,1 +1,2 @@
-delete
+gitops/secrets/age-key-a-team.txt
+**/secret.yaml
