@@ -3,7 +3,7 @@ namespace: a-team
 
 resources:
   - ../../base
-  - secret.yaml
+  - secret-message.yaml
 
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
