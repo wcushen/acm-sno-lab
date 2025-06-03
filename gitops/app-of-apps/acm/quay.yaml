@@ -5,19 +5,11 @@ metadata:
   name: quay
   namespace: openshift-gitops
 spec:
-  goTemplate: true
-  generators:
-    - clusterDecisionResource:
-        configMapRef: acm-placement
-        labelSelector:
-          matchLabels:
-            cluster.open-cluster-management.io/placement: placement-hub-openshift
-        requeueAfterSeconds: 180
   syncPolicy:
     preserveResourcesOnDeletion: false
   template:
     metadata:
-      name: quay-{{.name}}
+      name: quay
       annotations:
         argocd.argoproj.io/compare-options: IgnoreExtraneous
     spec:
