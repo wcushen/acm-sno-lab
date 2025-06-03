@@ -2,5 +2,5 @@
 resources:
   - subscription.yaml
   - namespace.yaml
-  - quayregistry.yaml
-  - init-config-bundle-secret.yaml
+  #- quayregistry.yaml
+  #- init-config-bundle-secret.yaml
