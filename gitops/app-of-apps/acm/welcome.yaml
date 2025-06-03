@@ -2,7 +2,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: quay
+  name: welcome
   namespace: openshift-gitops
 spec:
   generators:
@@ -11,23 +11,23 @@ spec:
     preserveResourcesOnDeletion: false
   template:
     metadata:
-      name: quay
+      name: welcome
       annotations:
         argocd.argoproj.io/compare-options: IgnoreExtraneous
     spec:
       project: default
       destination:
-        namespace: openshift-gitops
         server: 'https://kubernetes.default.svc'
+        namespace: openshift-gitops
       source:
         repoURL: https://github.com/wcushen/acm-sno-lab.git
-        path: gitops/applications/quay
+        path: gitops/applications/welcome/overlay/a-team
         plugin:
-          name: kustomize-novault-plugin
+          name: sops-age-kustomize-plugin
         targetRevision: feature/sans-acm
       syncPolicy:
         automated:
           prune: false
           selfHeal: true
         syncOptions:
-          - CreateNamespace=false
+          - Validate=true

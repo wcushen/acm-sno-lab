@@ -23,7 +23,7 @@ spec:
         repoURL: https://github.com/wcushen/acm-sno-lab.git
         path: gitops/applications/metallb/overlay/mce
         plugin:
-          name: argocd-novault-plugin-kustomize
+          name: kustomize-novault-plugin
         targetRevision: feature/sans-acm
       syncPolicy:
         automated:
